@@ -1,8 +1,6 @@
 package cache
 
 import (
-	"auth0tkn/profile"
-	"auth0tkn/token"
 	"bufio"
 	"encoding/hex"
 	"fmt"
@@ -11,6 +9,9 @@ import (
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/SimonMTS/auth0tkn/profile"
+	"github.com/SimonMTS/auth0tkn/token"
 )
 
 func Check(p profile.Profile) (t token.Token, hit bool, err error) {
@@ -95,6 +96,11 @@ func read() (map[string]cacheLine, error) {
 }
 
 func write(cache map[string]cacheLine) error {
+	err := os.MkdirAll(cacheDir(), 0700)
+	if err != nil {
+		return err
+	}
+
 	f, err := os.Create(cachePath())
 	if err != nil {
 		return err
@@ -122,10 +128,14 @@ func hash(p profile.Profile) string {
 	return hex.EncodeToString(h.Sum(nil))
 }
 
-func cachePath() string {
+func cacheDir() string {
 	dir, ok := os.LookupEnv("XDG_CACHE_HOME")
 	if !ok {
 		dir = "~/.cache"
 	}
-	return dir + "/auth0tkn/tokens"
+	return dir + "/auth0tkn"
+}
+
+func cachePath() string {
+	return cacheDir() + "/tokens"
 }

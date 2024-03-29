@@ -1,7 +1,6 @@
 package token
 
 import (
-	"auth0tkn/profile"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -9,6 +8,8 @@ import (
 	"net/url"
 	"strings"
 	"time"
+
+	"github.com/SimonMTS/auth0tkn/profile"
 )
 
 type Token struct {

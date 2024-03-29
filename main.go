@@ -5,12 +5,13 @@
 package main
 
 import (
-	"auth0tkn/cache"
-	"auth0tkn/profile"
-	"auth0tkn/token"
 	"flag"
 	"fmt"
 	"os"
+
+	"github.com/SimonMTS/auth0tkn/cache"
+	"github.com/SimonMTS/auth0tkn/profile"
+	"github.com/SimonMTS/auth0tkn/token"
 )
 
 var (

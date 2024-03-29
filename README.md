@@ -20,5 +20,5 @@ profile henk    example henk@example.com  321abc
 ## Install
 
 ```shell
-go install github.com/SimonMTS/auth0tkn@0.0.1
+go install github.com/SimonMTS/auth0tkn@0.0.2
 ```
