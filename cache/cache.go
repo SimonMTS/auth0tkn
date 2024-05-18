@@ -10,8 +10,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/SimonMTS/auth0tkn/profile"
-	"github.com/SimonMTS/auth0tkn/token"
+	"s14.nl/auth0tkn/profile"
+	"s14.nl/auth0tkn/token"
 )
 
 func Check(p profile.Profile) (t token.Token, hit bool, err error) {

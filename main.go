@@ -9,9 +9,9 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/SimonMTS/auth0tkn/cache"
-	"github.com/SimonMTS/auth0tkn/profile"
-	"github.com/SimonMTS/auth0tkn/token"
+	"s14.nl/auth0tkn/cache"
+	"s14.nl/auth0tkn/profile"
+	"s14.nl/auth0tkn/token"
 )
 
 var (

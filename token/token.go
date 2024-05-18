@@ -9,7 +9,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/SimonMTS/auth0tkn/profile"
+	"s14.nl/auth0tkn/profile"
 )
 
 type Token struct {
