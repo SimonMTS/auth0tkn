@@ -20,5 +20,5 @@ profile henk    example henk@example.com  321abc
 ## Install
 
 ```shell
-go install s14.nl/auth0tkn@0.0.2
+go install s14.nl/auth0tkn@latest
 ```
