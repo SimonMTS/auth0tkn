@@ -46,10 +46,10 @@ func Load(key string) (Profile, error) {
 		switch fields[0] {
 		case "profile":
 			if len(fields) != 5 {
-				return p, fmt.Errorf("todo good error")
+				return p, fmt.Errorf("bad profile line: expected 5 fields, found %d", len(fields))
 			}
 			if _, ok := profiles[fields[1]]; ok {
-				return p, fmt.Errorf("todo good error")
+				return p, fmt.Errorf("bad profile line: repeat name '%s'", fields[1])
 			}
 
 			profiles[fields[1]] = Profile{
@@ -61,10 +61,10 @@ func Load(key string) (Profile, error) {
 
 		case "tenant":
 			if len(fields) != 6 {
-				return p, fmt.Errorf("todo good error")
+				return p, fmt.Errorf("bad tenant line: expected 6 fields, found %d", len(fields))
 			}
 			if _, ok := tenants[fields[1]]; ok {
-				return p, fmt.Errorf("todo good error")
+				return p, fmt.Errorf("bad tenant line: repeat name '%s'", fields[1])
 			}
 
 			tenants[fields[1]] = Tenant{
@@ -76,7 +76,7 @@ func Load(key string) (Profile, error) {
 			}
 
 		default:
-			return p, fmt.Errorf("todo good error")
+			return p, fmt.Errorf("unexpected text '%s', expected 'tenant' or 'profile'", fields[0])
 		}
 	}
 

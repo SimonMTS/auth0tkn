@@ -24,7 +24,6 @@ func Get(p profile.Profile) (Token, error) {
 	data.Set("client_id", p.Tenant.ClientId)
 	data.Set("client_secret", p.Tenant.ClientSecret)
 	data.Set("audience", p.Tenant.Audience)
-	// data.Set("scope", "openid email profile")
 
 	data.Set("grant_type", "password")
 	data.Set("username", p.Username)
@@ -42,19 +41,14 @@ func Get(p profile.Profile) (Token, error) {
 
 	resp, err := http.DefaultClient.Do(r)
 	if err != nil {
-		fmt.Println(resp)
-		// TODO: better error message
 		return Token{}, err
 	}
 	if resp.StatusCode != 200 {
-		// TODO: better error message
-		return Token{}, fmt.Errorf("todo")
+		return Token{}, fmt.Errorf("status code %d", resp.StatusCode)
 	}
 
 	body, err := io.ReadAll(resp.Body)
 	if err != nil {
-		fmt.Println(string(body))
-		// TODO: better error message
 		return Token{}, err
 	}
 
@@ -67,14 +61,10 @@ func Get(p profile.Profile) (Token, error) {
 	}
 	err = json.Unmarshal(body, &result)
 	if err != nil {
-		fmt.Println(string(body))
-		// TODO: better error message
 		return Token{}, err
 	}
 	if result.AccessToken == "" {
-		fmt.Println(string(body))
-		// TODO: better error message
-		return Token{}, fmt.Errorf("todo")
+		return Token{}, fmt.Errorf("empty access token: response body: %s", body)
 	}
 
 	return Token{

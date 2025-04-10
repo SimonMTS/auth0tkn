@@ -69,7 +69,7 @@ func read() (map[string]cacheLine, error) {
 	for s.Scan() {
 		fields := strings.Split(s.Text(), sep)
 		if len(fields) != 4 {
-			return cache, fmt.Errorf("todo")
+			return cache, fmt.Errorf("bad cache entry: expected 4 fields, found %d", len(fields))
 		}
 		line := cacheLine{
 			hash:   fields[0],
@@ -78,8 +78,7 @@ func read() (map[string]cacheLine, error) {
 		}
 		expiry, err := strconv.Atoi(fields[1])
 		if err != nil {
-			// TODO: better error
-			return cache, err
+			return cache, fmt.Errorf("bad cache entry: %w", err)
 		}
 		line.expiry = expiry
 

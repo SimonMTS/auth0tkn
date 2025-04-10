@@ -28,7 +28,7 @@ func main() {
 
 	p, err := profile.Load(*selectedProfile)
 	if err != nil {
-		fmt.Println(err.Error())
+		fmt.Printf("failed to load profile: %s\n", err.Error())
 		os.Exit(1)
 	}
 
@@ -39,7 +39,7 @@ func main() {
 
 	tkn, hit, err := cache.Check(p)
 	if err != nil {
-		fmt.Println(err.Error())
+		fmt.Printf("failed to check cache: %s\n", err.Error())
 		os.Exit(2)
 	}
 
@@ -47,12 +47,13 @@ func main() {
 		tkn, err = token.Get(p)
 		if err != nil {
 			fmt.Println(err.Error())
+			fmt.Printf("failed to get token: %s\n", err.Error())
 			os.Exit(3)
 		}
 
 		err = cache.Update(p, tkn)
 		if err != nil {
-			fmt.Println(err.Error())
+			fmt.Printf("failed to update cache: %s\n", err.Error())
 			os.Exit(4)
 		}
 	}
