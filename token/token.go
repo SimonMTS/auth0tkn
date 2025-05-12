@@ -24,6 +24,7 @@ func Get(p profile.Profile) (Token, error) {
 	data.Set("client_id", p.Tenant.ClientId)
 	data.Set("client_secret", p.Tenant.ClientSecret)
 	data.Set("audience", p.Tenant.Audience)
+	data.Set("scope", "openid email profile")
 
 	data.Set("grant_type", "password")
 	data.Set("username", p.Username)
